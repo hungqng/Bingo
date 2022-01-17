@@ -1,6 +1,12 @@
 from operator import contains
 import random
- 
+
+#import rollbar
+
+#rollbar.init('c1efe733a93743edbae48bc44bb93613')
+#rollbar.report_message('Rollbar is configured correctly')
+
+
 class Board:
     def __init__(self):
         self.position = {}
@@ -17,6 +23,7 @@ class Board:
             "diagonal" : [0,0]
         }
         self.createBoard()
+    
     def createBoard(self):
         choices = [i for i in range(1,26)]
         for i in range(5):
@@ -25,6 +32,7 @@ class Board:
                 self.playBoard[i][j] = choice
                 choices.pop(choices.index(choice))
                 self.position[choice] = (i,j)
+    
     def updateBoard(self, val):
         x,y = self.position[val]
         self.playBoard[x][y] = 'X'
@@ -58,11 +66,10 @@ class Player(Board):
 class Game:
     def displayBoard(self, player1):
         board1 = player1.board.playBoard
-#        board2 = player2.board.playBoard
         size = 20
         p1len = len(player1.name)
-        #print(player1.name)
         print("Bingo sheet:")
+
         for i in range(5):
             for j in board1[i]:
                 if j=='X':
@@ -72,74 +79,34 @@ class Game:
                 else:
                     print(f"0{j}",end=" ")
             print("      ",end="")
-            # for j in board2[i]:
-            #     if j=='X':
-            #         print(f" {j}",end=" ")
-            #     elif j>9:
-            #         print(j,end=" ")
-            #     else:
-            #         print(f"0{j}",end=" ")
             print()
         print()
  
 game = Game()
 player1 = Player(name="player1")
-#player2 = Player(name="player2")
- 
-game.displayBoard(player1)
-numlist = list()
+
+#numlist = list(range(1,26))
+#random.shuffle(numlist) 
+
 while True:
-    #numlist = list(range(1,26))
-    #random.shuffle(numlist)
-    #numlist = random.shuffle(numlist)
-   
-    newNumber = random.choice(range(1,25))
- 
-    numlist.append(newNumber)
-    #if newNumber in numlist:
-    #    newNumber = random.choice(range(1,25))
-    for i in numlist:
-        if newNumber in numlist:
-            newNumber = random.choice(range(1,25))
-            i += 1
- 
-    # i = 0
-    # for i in numlist:
-    #     newNumber = numlist[i]
-    #     i += 1
-   
-    print(newNumber)
-    print(numlist)
-   
-    #val = int(input(f"{player1.name}'s turn : "))
+    game.displayBoard(player1)
+    #i = 0
+    #newNumber = random.choice(range(1,25))
+    #numlist.append(newNumber)
+    #while i < len(numlist):
+    #    if newNumber == numlist[i]:
+    #        newNumber = random.choice(range(1,25))
+    #    newNumber = numlist[i]
+    #    i = i + 1
+    #print(newNumber)
+    #print(numlist)
+
+    #val = newNumber = random.randrange(1,25)
+    #print(newNumber)
     val = int(input("The new number is: "))
     player1.updatePlayerBoard(val)
-#    player2.updatePlayerBoard(val)
     game.displayBoard(player1)
-    # if player1.checkBingo() and player2.checkBingo():
-    #     print("DRAW")
-    #     break
-    # if player1.checkBingo():
-    #     print(f"{player1.name} WON")
-    #     break
-    # if player2.checkBingo():
-    #     print(f"{player2.name} WON")
-    #     break
+
     if player1.checkBingo():
         print("You won!")
         break
-#    val = int(input(f"{player1.name}'s turn : "))
-#    player1.updatePlayerBoard(val)
-#   player2.updatePlayerBoard(val)
-#    game.displayBoard(player1)
-    # if player1.checkBingo() and player2.checkBingo():
-    #     print("DRAW")
-    #     break
-    # if player1.checkBingo():
-    #     print(f"{player1.name} WON")
-    #     break
-    # if player2.checkBingo():
-    #     print(f"{player2.name} WON")
-    #     break
- 
-
