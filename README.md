@@ -1,5 +1,5 @@
 # Bingo Game
-- This game is a command line game that allows players to take turns in the console to play Bingo!
+- This game is a command line game that allows players to take turns in the console to play Bingo.
 
 ## Tech Used
 1. Python
