@@ -1,11 +1,4 @@
-from operator import contains
 import random
-
-# import rollbar
-
-# rollbar.init('c1efe733a93743edbae48bc44bb93613')
-# rollbar.report_message('Rollbar is configured correctly')
-
 
 class Board:
     def __init__(self):
@@ -85,24 +78,8 @@ class Game:
 game = Game()
 player1 = Player(name="player1")
 
-#numlist = list(range(1,26))
-#random.shuffle(numlist) 
-
 while True:
     game.displayBoard(player1)
-    #i = 0
-    #newNumber = random.choice(range(1,25))
-    #numlist.append(newNumber)
-    #while i < len(numlist):
-    #    if newNumber == numlist[i]:
-    #        newNumber = random.choice(range(1,25))
-    #    newNumber = numlist[i]
-    #    i = i + 1
-    #print(newNumber)
-    #print(numlist)
-
-    #val = newNumber = random.randrange(1,25)
-    #print(newNumber)
     val = int(input("The new number is: "))
     player1.updatePlayerBoard(val)
     game.displayBoard(player1)
